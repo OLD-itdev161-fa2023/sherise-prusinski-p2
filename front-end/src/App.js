@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import TaskList from './components/TaskList/TaskList';
 
 class App extends React.Component {
 
@@ -162,19 +163,15 @@ class App extends React.Component {
                     <button type="button" onClick={this.createTask}>
                       Add
                     </button>
-                    <ul>
-                      {tasks.map(({ _id, taskDescription, completed, _userId}, i) => (
-                        (_userId === user._id &&
-                        <li key={i}
-                          onClick={e => this.updateTask(e, _id)}
-                          className={completed ? "completed" : "pending"}
-                        >
-                          <span className="remove" onClick={e => this.deleteTask(e, _id)}>[Remove]</span>
-                          <span> </span>
-                          {taskDescription}
-                        </li>)
-                      ))}
-                    </ul>
+                    <React.Fragment>
+                      <TaskList
+                        tasks={tasks}
+                        user={user}
+                        clickTask={this.updateTask}
+                        deleteTask={this.deleteTask}
+                      />
+                    </React.Fragment>
+                    
                   </div> ) : (<div><h3>Please Register or Login</h3></div>)
               }>
               </Route>

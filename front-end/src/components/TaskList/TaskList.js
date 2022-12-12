@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const TaskList = props => {
-    const { tasks, clickTask, deleteTask } = props;
+    const { tasks, user, clickTask, deleteTask } = props;
 
     return (
         <div>
