@@ -30,7 +30,7 @@ const Register = ({ authenticateUser }) => {
 
     const registerUser = (async () => {
         if (password !== passwordConfirm) {
-            console.log('Passwords do not match!');
+            alert('Passwords do not match!');
         }
         else {
             const newUser = {

@@ -117,7 +117,6 @@ class App extends React.Component {
   }
 
   render() {
-    const token = localStorage.getItem('token');
     let { user, tasks, taskDesc } = this.state;
     const authProps = {
       authenticateUser: this.authenticateUser
@@ -129,11 +128,15 @@ class App extends React.Component {
           <header className="App-header">
             <h1>TaskKeeper</h1>
             <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-                {!user && 
-                  <Link to="/register">Register</Link>
+              {!user && 
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+              }
+              {!user && 
+                  <li>
+                    <Link to="/register">Register</Link>
+                  </li>
                 }
               <li>
                 {user ? (
