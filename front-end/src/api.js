@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "http://localhost:8081/tasks/"
+const API_URL = "http://localhost:8081/api/tasks/"
 
 async function createTask(task) {
     const params = JSON.stringify({

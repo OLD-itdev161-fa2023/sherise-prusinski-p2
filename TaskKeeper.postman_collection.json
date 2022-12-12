@@ -25,12 +25,13 @@
 							"raw": "{\n    \"taskDescription\": \"A dummy task\",\n    \"completed\" : false\n}"
 						},
 						"url": {
-							"raw": "localhost:8081/tasks",
+							"raw": "localhost:8081/api/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks"
 							]
 						}
@@ -53,12 +54,13 @@
 							"raw": "{\n    \"taskDescription\": \"\",\n    \"completed\" : \"\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8081/tasks",
+							"raw": "localhost:8081/api/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks"
 							]
 						}
@@ -81,12 +83,13 @@
 							"raw": "{\n    \"taskDescription\": \"A dummy task\",\n    \"completed\" : \"\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8081/tasks",
+							"raw": "localhost:8081/api/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks"
 							]
 						}
@@ -109,12 +112,13 @@
 							"raw": "{\n    \"taskDescription\": \"\",\n    \"completed\" : false\n}"
 						},
 						"url": {
-							"raw": "localhost:8081/tasks",
+							"raw": "localhost:8081/api/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks"
 							]
 						}
@@ -132,12 +136,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/tasks",
+							"raw": "localhost:8081/api/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks"
 							]
 						}
@@ -155,12 +160,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/tasks/6342fffeebbaae47630a6b0f",
+							"raw": "localhost:8081/api/tasks/6342fffeebbaae47630a6b0f",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks",
 								"6342fffeebbaae47630a6b0f"
 							]
@@ -189,12 +195,13 @@
 							"raw": "{\n    \"completed\": true\n}"
 						},
 						"url": {
-							"raw": "localhost:8081/tasks/6342fffeebbaae47630a6b0f",
+							"raw": "localhost:8081/api/tasks/6342fffeebbaae47630a6b0f",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
+								"api",
 								"tasks",
 								"6342fffeebbaae47630a6b0f"
 							]
@@ -356,7 +363,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Sherise Prusinski\",\r\n    \"email\" : \"prusinsa@gmatc.matc.edu\",\r\n    \"password\" : \"sherise123\"\r\n}"
+							"raw": "{\r\n    \"name\": \"Sherise A Prusinski\",\r\n    \"email\" : \"sherise927@gmail.com\",\r\n    \"password\" : \"sherise123\"\r\n}"
 						},
 						"url": {
 							"raw": "localhost:8081/api/users",
@@ -408,7 +415,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM2N2I2NTY3YzUxYTE2MWM5M2YzZDUzIn0sImlhdCI6MTY2Nzc0MTI3MCwiZXhwIjoxNjY3Nzc3MjcwfQ.L44UZ7JXW_Y97Uh-RsBTvkmlboEYwkiGfGpAeW92Zfk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5Njk3ZjEzZWY3ZDJmNjdkNzQ2YTM4In0sImlhdCI6MTY3MDgxMzY4MSwiZXhwIjoxNjcwODQ5NjgxfQ.tah4GOiByYoyWFALF2-tXJe8oyVbsONaErfMeY9LLYM",
 								"type": "text"
 							}
 						],
@@ -439,7 +446,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"prusinsa@gmatc.matc.edu\",\n    \"password\" : \"sherise123\"\n}"
+							"raw": "{\n    \"email\" : \"sherise927@gmail.com\",\n    \"password\" : \"sherise123\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8081/api/login",

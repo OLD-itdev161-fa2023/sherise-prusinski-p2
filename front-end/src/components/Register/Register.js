@@ -3,6 +3,8 @@ import axios from 'axios';
 import { createBrowserHistory } from 'history';
 //import { useHistory } from 'react-router-dom';
 
+const API_URL = "http://localhost:8081/api/users"
+
 const Register = ({ authenticateUser }) => {
     //let history = useHistory();
     const history = createBrowserHistory();
@@ -45,7 +47,7 @@ const Register = ({ authenticateUser }) => {
                 }
 
                 const body = JSON.stringify(newUser);
-                const res = await axios.post('http://localhost:5000/api/users', body, config);
+                const res = await axios.post(API_URL, body, config);
 
                 //Store user data and redirect
                 localStorage.setItem('token', res.data.token);

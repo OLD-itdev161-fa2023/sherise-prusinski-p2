@@ -46,7 +46,7 @@ app.get('/', (req, res) =>
 * @desc Add a new task
 */
 app.post(
-    "/tasks",
+    "/api/tasks",
     [
         expressValidator.check('taskDescription', 'Please enter task description')
             .not()
@@ -84,7 +84,7 @@ app.post(
 * @route GET 
 * @desc Get all tasks
 */
-app.get("/tasks", async (req, res, next) => {
+app.get("/api/tasks", async (req, res, next) => {
     try {
         const tasks = await Task.find({})
         return success(res, tasks)
@@ -97,7 +97,7 @@ app.get("/tasks", async (req, res, next) => {
 * @route DELETE 
 * @desc Delete a task
 */
-app.delete("/tasks/:id", async (req, res, next) => {
+app.delete("/api/tasks/:id", async (req, res, next) => {
     try {
         await Task.findByIdAndRemove(req.params.id)
         return success(res, "Task deleted!")
@@ -110,7 +110,7 @@ app.delete("/tasks/:id", async (req, res, next) => {
 * @route PUT 
 * @desc Update a task as completed
 */
-app.put("/tasks/:id", async (req, res, next) => {
+app.put("/api/tasks/:id", async (req, res, next) => {
     try {
         const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
