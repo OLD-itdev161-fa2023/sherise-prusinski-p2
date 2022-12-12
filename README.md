@@ -20,7 +20,7 @@ This application will provide following functionalities :
 
 The structure of the project is primarily :
 1) back-end    NodeJS, Express and MongoDB based REST APIs
-2) front-end   ReactJS based Web UI
+2) front-end   ReactJS based componentized Web UI
 
 back-end will provide the following REST APIs :
 1) POST   /api/tasks       Adding a new task
