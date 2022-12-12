@@ -34,18 +34,18 @@ back-end will provide the following REST APIs :
 
 
 front-end will provide the web user-interface to use these back-end APIs as a user-friendly and intuitive ReactJS based web-application.
-back-end runs on http://localhost:8081 endpoint
-front-end runs on http://localhost:8080 endpoint
+<b>back-end</b> runs on http://localhost:8081 endpoint
+<b>front-end</b> runs on http://localhost:8080 endpoint
 Postman REST requests are part of TaskKeeper.postman_collection.json for both sides of endpoints to test independently of the application.
 
-Demo :
+<u>Demo</u> : 
 
 to run the program go to the repository root directory
 
 1) to run back-end server : npm run back-end
 2) to run front-end client : npm run front-end
 
-Screenshots:
+<u>Screenshots</u>:
 
 1. <b> Register as a hew user</b>By clicking on the Register between Home and Login links at the right top corner of the screen <br>
 ![Alt text](demo/Register.png?raw=true "Logging in as a user") <br>
@@ -53,16 +53,16 @@ Screenshots:
 2. <b> Logging in as a user</b>By clicking on the Login link next to Home and Register links at the right top corner of the screen <br>
 ![Alt text](demo/Login.png?raw=true "Logging in as a user") <br>
 
-3. <b> Adding a new task</b>  : A new task description can be entered in the input textbox and by clicking Add button<br>
-![Alt text](demo/AddTask.png?raw=true "Add Task") <br>
-
-4. <b> Get all tasks</b>  : Upon logging into the application already existing tasks created by user in the completed or non-completed state can be retrieved<br>
+3. <b> Get all tasks</b>  : Upon logging into the application already existing tasks created by user in the completed or non-completed state can be retrieved<br>
 ![Alt text](demo/GetAllTasks.png?raw=true "Get All Tasks") <br>
 
-5. <b> Updating a task</b> : By clicking on task text it can be marked as complete<br>
+4. <b> Adding a new task</b>  : A new task description can be entered in the input textbox and by clicking Add button<br>
+![Alt text](demo/AddTask.png?raw=true "Add Task") <br>
+
+5. <b> Updating a task</b> : By clicking on task description text, it can be marked as complete or toggled back to uncompleted state<br>
 ![Alt text](demo/UpdatedTask.png?raw=true "Updating A Task") <br>
 
-6. <b> Deleting a task</b> By clicking on the X next to it a task can be deleted<br>
+6. <b> Deleting a task</b> By clicking on the [Remove] button preceeding the task description, a task can be deleted<br>
 ![Alt text](demo/DeletedTask.png?raw=true "Deleting A Task") <br>
 
 7. <b> Logging out as a user</b> By clicking on the Log out link at the right top corner of the screen<br>
