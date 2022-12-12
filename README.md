@@ -49,6 +49,10 @@ to run the program go to the repository root directory
 1) to run back-end server : npm run back-end
 2) to run front-end client : npm run front-end
 
+OR
+
+to run both simulatneously : npm run dev
+
 <u>Screenshots</u>:
 
 1. <b> Register as a hew user</b>By clicking on the Register between Home and Login links at the right top corner of the screen <br>
