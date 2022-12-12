@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Port 3000",
+			"name": "Port 8080",
 			"item": [
 				{
 					"name": "Register User",
@@ -25,11 +25,11 @@
 							"raw": "{\r\n    \"name\": \"Sherise Prusinski\",\r\n    \"email\" : \"prusinsa@gmatc.matc.edu\",\r\n    \"password\" : \"sherise123\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/users",
+							"raw": "localhost:8080/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8080",
 							"path": [
 								"api",
 								"users"
@@ -54,11 +54,11 @@
 							"raw": "{\r\n    \"name\": \"Sherise Prusinski\",\r\n    \"email\" : \"prusinsa@gmatc.matc.edu\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/users",
+							"raw": "localhost:8080/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8080",
 							"path": [
 								"api",
 								"users"
@@ -83,11 +83,11 @@
 							"raw": "{\r\n    \"email\" : \"prusinsa@gmatc.matc.edu\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/users",
+							"raw": "localhost:8080/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8080",
 							"path": [
 								"api",
 								"users"
@@ -112,11 +112,11 @@
 							"raw": "{\r\n    \r\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/users",
+							"raw": "localhost:8080/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8080",
 							"path": [
 								"api",
 								"users"
@@ -131,11 +131,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000",
+							"raw": "localhost:8080",
 							"host": [
 								"localhost"
 							],
-							"port": "3000"
+							"port": "8080"
 						}
 					},
 					"response": []
@@ -143,7 +143,7 @@
 			]
 		},
 		{
-			"name": "Port 5000",
+			"name": "Port 8081",
 			"item": [
 				{
 					"name": "Register User",
@@ -161,11 +161,11 @@
 							"raw": "{\r\n    \"name\": \"Sherise Prusinski\",\r\n    \"email\" : \"prusinsa@gmatc.matc.edu\",\r\n    \"password\" : \"sherise123\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:5000/api/users",
+							"raw": "localhost:8081/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "8081",
 							"path": [
 								"api",
 								"users"
@@ -190,11 +190,11 @@
 							"raw": "{\r\n    \"name\": \"She Pru\",\r\n    \"email\" : \"shepru@gmail.com\",\r\n    \"password\" : \"shepru123\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:5000/api/users",
+							"raw": "localhost:8081/api/users",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "8081",
 							"path": [
 								"api",
 								"users"
@@ -215,11 +215,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:5000/api/auth",
+							"raw": "localhost:8081/api/auth",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "8081",
 							"path": [
 								"api",
 								"auth"
@@ -244,11 +244,11 @@
 							"raw": "{\n    \"email\" : \"prusinsa@gmatc.matc.edu\",\n    \"password\" : \"sherise123\"\n}"
 						},
 						"url": {
-							"raw": "localhost:5000/api/login",
+							"raw": "localhost:8081/api/login",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "8081",
 							"path": [
 								"api",
 								"login"
