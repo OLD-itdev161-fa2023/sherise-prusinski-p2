@@ -2,7 +2,7 @@
 
 <b>Project Description:</b>
 
-Project 1 - TaskKeeper Application
+Project 2 - TaskKeeper Application
 
 This is a TaskKeeper application which allows any user to manage tasks.
 
