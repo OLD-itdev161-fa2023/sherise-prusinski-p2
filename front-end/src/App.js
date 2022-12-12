@@ -8,8 +8,8 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 
 function App() {
-  const [tasks, setTasks] = useState([])
-  const [taskDesc, setTask] = useState("")
+  const [tasks, setTasks] = useState([]);
+  const [taskDesc, setTask] = useState("");
   let task;
 
   useEffect(() => {
