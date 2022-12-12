@@ -44,6 +44,7 @@ const Login = ({ authenticateUser }) => {
             //Store user data and redirect
             localStorage.setItem('token', res.data.token);
             history.push('/');
+            history.go('/');
         } catch (error) {
             //Clear user data and set errors
             localStorage.removeItem('token');
