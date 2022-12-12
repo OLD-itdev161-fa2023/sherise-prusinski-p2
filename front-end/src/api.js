@@ -32,10 +32,9 @@ async function createTask(task) {
             return response.data;
         }
     } catch (exception) {
-        alert("Error :" + exception);
+        alert("Error : Task may already exist or server error!");
+        return exception;
     }
-
-    return null;
 }
 
 async function deleteTask(id) {
@@ -53,7 +52,7 @@ async function deleteTask(id) {
             return message;
         }
     } catch (exception) {
-        alert("Error :" + exception);
+        alert("Error : Could not delete task or server error!");
     }
     
     return null;
@@ -73,10 +72,9 @@ async function updateTask(id, payload) {
         return newTask;
         }
     } catch (exception) {
-        alert("Error :" + exception);
+        alert("Error : Could not update task state or server error!");
+        return exception;
     }
-
-    return null;
 }
 
 async function getTasks() {
@@ -94,10 +92,9 @@ async function getTasks() {
             return tasks;
         }
     } catch (exception) {
-        alert("Error :" + exception);
+        alert("Error : Could not get tasklist or server error!");
+        return exception;
     }
-
-    return null;
 }
 
 export default { ROOT_URL, API_URL, TASKS_API_URL, AUTH_API_URL, createTask, deleteTask, updateTask, getTasks }
