@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://prusinsa:Itdev161password@cluster0.jtkt7fl.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "MyMomToldMeLifeIsLikeABoxOfChocolate"
+}
