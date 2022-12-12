@@ -69,14 +69,24 @@ app.post(
             try {
                 const { _userId, taskDescription, completed } = req.body;
                 //Check if task exists
-                let task = await Task.findOne({ _userId:_userId, taskDescription: taskDescription });
+                let task = await Task.findOne({ 
+                    $and: [ 
+                            { "_userId":_userId },
+                            {"taskDescription": taskDescription}
+                        ]
+                    });
                 if (task) {
                     return res
                         .status(400)
                         .json({ errors: [{ msg: 'Task already exists' }] });
                 }
                 task = await Task.create(req.body);
-                let payload = await Task.findOne({ taskDescription: taskDescription });
+                let payload = await Task.findOne({ 
+                    $and: [ 
+                            { "_userId":_userId },
+                            {"taskDescription": taskDescription}
+                        ]
+                    });
                 return success(res, payload);
             } catch (exception) {
                 console.log(exception);
