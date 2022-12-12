@@ -31,36 +31,46 @@ async function createTask(task) {
     } catch (exception) {
         alert("Error :" + exception);
     }
+
     return params;
 }
 
 async function deleteTask(id) {
     const token = localStorage.getItem('token');
-    const message = "";
 
-    if (token) {
-        const config = {
-            headers: {
-                'x-auth-token': token
-            }
-        };
-
-        message = await axios.delete(`${TASKS_API_URL}${id}`, config);
+    try {
+        if (token) {
+            const config = {
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+    
+            const message = await axios.delete(`${TASKS_API_URL}${id}`, config);
+            return message;
+        }
+    } catch (exception) {
+        alert("Error :" + exception);
     }
-    return message;
+    
+    return null;
 }
 
 async function updateTask(id, payload) {
     const token = localStorage.getItem('token');
 
-    if (token) {
-        const config = {
-            headers: {
-                'x-auth-token': token
-            }
-        };
-    const { data: newTask } = await axios.put(`${TASKS_API_URL}${id}`, payload, config);
-    return newTask;
+    try {
+        if (token) {
+            const config = {
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+        const { data: newTask } = await axios.put(`${TASKS_API_URL}${id}`, payload, config);
+        return newTask;
+        }
+    } catch (exception) {
+        alert("Error :" + exception);
     }
 
     return null;
@@ -69,16 +79,21 @@ async function updateTask(id, payload) {
 async function getTasks() {
     const token = localStorage.getItem('token');
 
-    if (token) {
-        const config = {
-            headers: {
-                'x-auth-token': token
-            }
-        };
-
-        const { data: tasks } = await axios.get(TASKS_API_URL, config);
-        return tasks;
+    try {
+        if (token) {
+            const config = {
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+    
+            const { data: tasks } = await axios.get(TASKS_API_URL, config);
+            return tasks;
+        }
+    } catch (exception) {
+        alert("Error :" + exception);
     }
+
     return null;
 }
 
