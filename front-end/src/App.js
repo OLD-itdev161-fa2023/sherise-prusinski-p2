@@ -11,7 +11,9 @@ class App extends React.Component {
   state = {
     tasks: [],
     task: null,
-    taskDesc: null
+    taskDesc: null,
+    token: null,
+    user: null
   };
 
   componentDidMount() {
