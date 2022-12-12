@@ -64,7 +64,7 @@ class App extends React.Component {
             id="task-input"
             type="text"
             value={this.state.taskDesc}
-            onChange={({ target }) => this.setState({task:target.value})}
+            onChange={({ target }) => this.setState({taskDesc:target.value})}
           />
           <button type="button" onClick={this.createTask}>
             Add
