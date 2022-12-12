@@ -1,6 +1,8 @@
 import axios from "axios"
 
-const API_URL = "http://localhost:8081/api/tasks/"
+const API_URL = "http://localhost:8081/api";
+const TASKS_API_URL = API_URL + "/tasks/";
+const AUTH_API_URL = API_URL + "/auth/";
 
 async function createTask(task) {
     const params = JSON.stringify({
@@ -9,7 +11,7 @@ async function createTask(task) {
     });
 
     try {
-        const response = await axios.post(API_URL, params, {
+        const response = await axios.post(TASKS_API_URL, params, {
             headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json'
@@ -27,19 +29,54 @@ async function createTask(task) {
 }
 
 async function deleteTask(id) {
-    const message = await axios.delete(`${API_URL}${id}`)
+    const message = await axios.delete(`${TASKS_API_URL}${id}`)
     return message
 }
 
 async function updateTask(id, payload) {
-    const { data: newTask } = await axios.put(`${API_URL}${id}`, payload)
+    const { data: newTask } = await axios.put(`${TASKS_API_URL}${id}`, payload)
     return newTask
 }
 
 async function getTasks() {
-    const { data: tasks } = await axios.get(API_URL)
+    const { data: tasks } = await axios.get(TASKS_API_URL)
     return tasks
 }
 
+async function authenticateUser() {
+    const token = localStorage.getItem('token');
 
-export default { createTask, deleteTask, updateTask, getTasks }
+    if (!token) {
+      localStorage.removeItem('user');
+      this.setState({ user: null });
+    }
+
+    if (token) {
+      const config = {
+        headers: {
+          'x-auth-token': token
+        }
+      }
+      axios.get(AUTH_API_URL, config)
+        .then((response) => {
+          localStorage.setItem('user', response.data.name);
+          this.setState(
+            {
+              user: response.data.name,
+              token: token
+            },
+            () => {
+              this.loadData();
+            }
+          );
+        })
+        .catch((error) => {
+          localStorage.removeItem('user');
+          this.setState({ user: null });
+          console.error(`Error logging in : ${error}`);
+        })
+    }
+    return token;
+  }
+
+export default { createTask, deleteTask, updateTask, getTasks, authenticateUser }
