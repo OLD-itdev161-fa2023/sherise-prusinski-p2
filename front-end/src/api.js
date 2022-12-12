@@ -8,12 +8,15 @@ const TASKS_API_URL = API_URL + "/tasks/";
 const AUTH_API_URL = API_URL + "/auth/";
 
 async function createTask(task) {
-    const params = JSON.stringify({
-        "taskDescription": task, 
-        "completed": false
-    });
-
     try {
+        const _userId = localStorage.getItem('_userId');
+
+        const params = JSON.stringify({
+            "_userId": _userId,
+            "taskDescription": task, 
+            "completed": false
+        });
+
         const token = localStorage.getItem('token');
         const config = {
             headers: {
@@ -32,7 +35,7 @@ async function createTask(task) {
         alert("Error :" + exception);
     }
 
-    return params;
+    return null;
 }
 
 async function deleteTask(id) {

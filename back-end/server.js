@@ -50,6 +50,9 @@ app.post(
     [
         auth,
         [
+            expressValidator.check('_userId', 'Please enter user ID')
+                .not()
+                .isEmpty(),
             expressValidator.check('taskDescription', 'Please enter task description')
                 .not()
                 .isEmpty(),
@@ -64,9 +67,9 @@ app.post(
             return res.status(422).json({ errors: errors.array() });
         } else {
             try {
-                const { taskDescription, completed } = req.body;
+                const { _userId, taskDescription, completed } = req.body;
                 //Check if task exists
-                let task = await Task.findOne({ taskDescription: taskDescription });
+                let task = await Task.findOne({ _userId:_userId, taskDescription: taskDescription });
                 if (task) {
                     return res
                         .status(400)

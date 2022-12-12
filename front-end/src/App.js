@@ -65,7 +65,7 @@ class App extends React.Component {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      localStorage.removeItem('user');
+      localStorage.removeItem('_userId');
       this.setState({ user: null });
     }
 
@@ -77,7 +77,7 @@ class App extends React.Component {
       }
       axios.get(api.AUTH_API_URL, config)
         .then((response) => {
-          localStorage.setItem('user', response.data);
+          localStorage.setItem('_userId', response.data._id);
           this.setState(
             {
               user: response.data,
@@ -89,7 +89,7 @@ class App extends React.Component {
           );
         })
         .catch((error) => {
-          localStorage.removeItem('user');
+          localStorage.removeItem('_userId');
           this.setState({ user: null });
           console.error(`Error logging in : ${error}`);
         })
@@ -112,7 +112,7 @@ class App extends React.Component {
 
   logOut = async () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('_userId');
     this.setState({ user: null, token: null, tasks:[], task:null, taskDesc: null });
   }
 
@@ -164,14 +164,15 @@ class App extends React.Component {
                       Add
                     </button>
                     <ul>
-                      {tasks.map(({ _id, taskDescription, completed }, i) => (
+                      {tasks.map(({ _id, taskDescription, completed, _userId}, i) => (
+                        (_userId === user._id &&
                         <li key={i}
                           onClick={e => this.updateTask(e, _id)}
                           className={completed ? "completed" : "pending"}
                         >
                           {taskDescription}
                           <span onClick={e => this.deleteTask(e, _id)}>X</span>
-                        </li>
+                        </li>)
                       ))}
                     </ul>
                   </div> ) : (<div><h3>Please Register or Login</h3></div>)
