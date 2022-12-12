@@ -2,6 +2,10 @@ const mongoose = require("mongoose") // requiring the mongoose package
 
 const taskSchema = new mongoose.Schema({
     // creating a schema for task
+    /*user: {
+        type: 'ObjectId',
+        ref: 'User'
+    },*/
     taskDescription: {
         // field1: task
         type: String, // task is a string

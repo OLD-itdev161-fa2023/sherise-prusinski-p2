@@ -4,7 +4,8 @@ const API_URL = "http://localhost:8081/tasks/"
 
 async function createTask(task) {
     const params = JSON.stringify({
-        "taskDescription": task, "completed": false
+        "taskDescription": task, 
+        "completed": false
     });
 
     try {

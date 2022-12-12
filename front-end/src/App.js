@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react"
 import './App.css';
 import api from "./api"
 
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+
 function App() {
   const [tasks, setTasks] = useState([])
   const [taskDesc, setTask] = useState("")
