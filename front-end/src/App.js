@@ -132,13 +132,9 @@ class App extends React.Component {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                {user ? (
-                  <Link to="/new-task">New Task</Link>
-                ) : (
+                {!user && 
                   <Link to="/register">Register</Link>
-                )}
-              </li>
+                }
               <li>
                 {user ? (
                   <Link to="" onClick={this.logOut}>Log out</Link>
