@@ -1,6 +1,7 @@
 import React from "react"
 import './App.css';
 import api from "./api"
+import axios from "axios"
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 
 class App extends React.Component {
+
   state = {
     tasks: [],
     task: null,
@@ -17,13 +19,17 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const fetchTaskAndSetTasks = async () => {
-      const fetchedTasks = await api.getTasks()
+    axios.get(api.ROOT_URL)
+    .then((response) => {
       this.setState({
-        tasks: fetchedTasks
+        data: response.data
       })
-    }
-    fetchTaskAndSetTasks()
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    })
+
+    this.authenticateUser();
   }
 
   createTask = async e => {
@@ -36,11 +42,11 @@ class App extends React.Component {
 
   deleteTask = async (e, id) => {
     try {
-      e.stopPropagation()
-      await api.deleteTask(id)
+      e.stopPropagation();
+      await api.deleteTask(id);
       this.setState({
         tasks: [...this.state.tasks.filter(({ _id: i }) => id !== i)]
-      })
+      });
     } catch (err) { }
   }
 
@@ -55,17 +61,67 @@ class App extends React.Component {
     })
   }
 
+  authenticateUser = () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      localStorage.removeItem('user');
+      this.setState({ user: null });
+    }
+
+    if (token) {
+      const config = {
+        headers: {
+          'x-auth-token': token
+        }
+      }
+      axios.get(api.AUTH_API_URL, config)
+        .then((response) => {
+          localStorage.setItem('user', response.data.name);
+          this.setState(
+            {
+              user: response.data.name,
+              token: token
+            },
+            () => {
+              this.loadData();
+            }
+          );
+        })
+        .catch((error) => {
+          localStorage.removeItem('user');
+          this.setState({ user: null });
+          console.error(`Error logging in : ${error}`);
+        })
+    }
+  }
+
+  loadData = () => {
+    const { token } = this.state;
+    const fetchTaskAndSetTasks = async () => {
+      const fetchedTasks = await api.getTasks()
+      this.setState({
+        tasks: fetchedTasks
+      })
+    }
+
+    if (token) {
+      fetchTaskAndSetTasks()
+      console.log("Loaded tasks : " + this.state.tasks);
+    }
+  }
+
   logOut = async () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({ user: null, token: null });
+    this.setState({ user: null, token: null, tasks:[], task:null, taskDesc: null });
   }
 
   render() {
     const token = localStorage.getItem('token');
     let { user, tasks, taskDesc } = this.state;
     const authProps = {
-      authenticateUser: api.authenticateUser
+      authenticateUser: this.authenticateUser
     };
 
     return (
@@ -96,6 +152,7 @@ class App extends React.Component {
           <main>
             <Routes>
               <Route exact path="/" element= {
+                user ? (
                   <div>
                     <input
                       id="task-input"
@@ -117,18 +174,18 @@ class App extends React.Component {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                }>
+                  </div> ) : (<div><h3>Please Register or Login</h3></div>)
+              }>
               </Route>
               <Route
                 exact
                 path="/register"
-                render={() => <Register {...authProps} />}
+                element={ <Register {...authProps} />}
               />
               <Route
                 exact
                 path="/login"
-                render={() => <Login {...authProps} />}
+                element={ <Login {...authProps} />}
               />
             </Routes>
           </main>

@@ -48,12 +48,15 @@ app.get('/', (req, res) =>
 app.post(
     "/api/tasks",
     [
-        expressValidator.check('taskDescription', 'Please enter task description')
-            .not()
-            .isEmpty(),
-        expressValidator.check('completed', 'Please enter is task completed')
-            .not()
-            .isEmpty(),
+        auth,
+        [
+            expressValidator.check('taskDescription', 'Please enter task description')
+                .not()
+                .isEmpty(),
+            expressValidator.check('completed', 'Please enter is task completed')
+                .not()
+                .isEmpty()
+        ]
     ],
     async (req, res, next) => {
         const errors = expressValidator.validationResult(req);
@@ -84,7 +87,7 @@ app.post(
 * @route GET 
 * @desc Get all tasks
 */
-app.get("/api/tasks", async (req, res, next) => {
+app.get("/api/tasks", auth, async (req, res, next) => {
     try {
         const tasks = await Task.find({})
         return success(res, tasks)
@@ -97,7 +100,7 @@ app.get("/api/tasks", async (req, res, next) => {
 * @route DELETE 
 * @desc Delete a task
 */
-app.delete("/api/tasks/:id", async (req, res, next) => {
+app.delete("/api/tasks/:id", auth, async (req, res, next) => {
     try {
         await Task.findByIdAndRemove(req.params.id)
         return success(res, "Task deleted!")
@@ -110,7 +113,7 @@ app.delete("/api/tasks/:id", async (req, res, next) => {
 * @route PUT 
 * @desc Update a task as completed
 */
-app.put("/api/tasks/:id", async (req, res, next) => {
+app.put("/api/tasks/:id", auth, async (req, res, next) => {
     try {
         const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
