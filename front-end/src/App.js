@@ -14,7 +14,7 @@ class App extends React.Component {
   state = {
     tasks: [],
     task: null,
-    taskDesc: null,
+    taskDesc: '',
     token: null,
     user: null
   };
@@ -127,7 +127,12 @@ class App extends React.Component {
       <Router>
         <div className="App" >
           <header className="App-header">
+            <span>
+              <img src="taskKeeperBG.png" alt=""></img>
+            </span>
+            
             <h1>TaskKeeper</h1>
+
             <ul>
               {!user && 
                 <li>
@@ -171,7 +176,6 @@ class App extends React.Component {
                         deleteTask={this.deleteTask}
                       />
                     </React.Fragment>
-                    
                   </div> ) : (<div><h3>Please Register or Login</h3></div>)
               }>
               </Route>
