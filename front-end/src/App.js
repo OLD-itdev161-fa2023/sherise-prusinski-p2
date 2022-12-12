@@ -77,10 +77,10 @@ class App extends React.Component {
       }
       axios.get(api.AUTH_API_URL, config)
         .then((response) => {
-          localStorage.setItem('user', response.data.name);
+          localStorage.setItem('user', response.data);
           this.setState(
             {
-              user: response.data.name,
+              user: response.data,
               token: token
             },
             () => {
@@ -153,6 +153,7 @@ class App extends React.Component {
               <Route exact path="/" element= {
                 user ? (
                   <div>
+                    <h3> Welcome {user.name} </h3>
                     <input
                       id="task-input"
                       type="text"
