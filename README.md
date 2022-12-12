@@ -23,12 +23,14 @@ The structure of the project is primarily :
 2) front-end   ReactJS based componentized Web UI
 
 back-end will provide the following REST APIs :
-1) POST   /api/tasks       Adding a new task
-          /api/login       To login as a user
-          /api/users       To register as a user
-2) GET    /api/tasks       Getting all tasks
-          /api/auth       To authenticate user and establish login session
-          /                To check if the back-end is up and running
+1) POST   
+1.1 /api/tasks       Adding a new task 
+1.2 /api/login       To login as a user
+1.3 /api/users       To register as a user
+2) GET 
+2.1 /api/tasks       Getting all tasks
+2.2 /api/auth       To authenticate user and establish login session
+2.3 /                To check if the back-end is up and running
 3) DELETE /api/tasks/:id   Deleting a task with matching id
 4) PUT    /api/tasks/:id   Updating a task with the matching id
 
