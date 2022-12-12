@@ -106,8 +106,7 @@ class App extends React.Component {
     }
 
     if (token) {
-      fetchTaskAndSetTasks()
-      console.log("Loaded tasks : " + this.state.tasks);
+      fetchTaskAndSetTasks();
     }
   }
 
