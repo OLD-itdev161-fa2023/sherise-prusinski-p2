@@ -170,8 +170,9 @@ class App extends React.Component {
                           onClick={e => this.updateTask(e, _id)}
                           className={completed ? "completed" : "pending"}
                         >
+                          <span className="remove" onClick={e => this.deleteTask(e, _id)}>[Remove]</span>
+                          <span> </span>
                           {taskDescription}
-                          <span onClick={e => this.deleteTask(e, _id)}>X</span>
                         </li>)
                       ))}
                     </ul>
