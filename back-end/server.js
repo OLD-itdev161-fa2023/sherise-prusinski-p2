@@ -2,11 +2,16 @@ const connectDatabase = require("./config/db") //database server
 const express = require("express") // express application server
 const app = express() // generate an app object
 const expressValidator = require('express-validator') //to validate incoming requests
+const config = require('config')
+const User = require('./models/user')
 const Task = require("./models/task");
 const bodyParser = require("body-parser") // requiring the body-parser
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const auth = require('./middleware/auth')
+
 const PORT = process.env.PORT || 8081 // port that the server is running on => localhost:8081
 app.use(bodyParser.json()); // telling the app that we are going to use json to handle incoming payload
-
 //Configure Middleware
 const cors = require('cors');
 app.use(express.json({ extended: false }));
@@ -122,6 +127,132 @@ app.use((error, req, res, next) => {
         message: error.message || "there was an error processing request",
     })
 })
+
+const returnToken = (user, res) => {
+    const payload = {
+        user: {
+            id: user.id
+        }
+    };
+
+    jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: '10hr' },
+        (err, token) => {
+            if (err) throw err;
+            res.json({ token: token });
+        }
+    );
+};
+
+/**
+ * @route POST api/users
+ * @desc Register user
+ */
+app.post(
+    '/api/users',
+    [
+        expressValidator.check('name', 'Please enter your name')
+            .not()
+            .isEmpty(),
+        expressValidator.check('email', 'Please enter a valid email')
+            .isEmail(),
+        expressValidator.check('password', 'Please enter a password with 6 or more characters')
+            .isLength({ min: 6 })
+    ],
+    async (req, res) => {
+        const errors = expressValidator.validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        } else {
+            const { name, email, password } = req.body;
+            try {
+                //Check if user exists
+                let user = await User.findOne({ email: email });
+                if (user) {
+                    return res
+                        .status(400)
+                        .json({ errors: [{ msg: 'User already exists' }] });
+                }
+
+                //Create a new user
+                user = new User({
+                    name: name,
+                    email: email,
+                    password: password
+                });
+
+                //Encrypt the password
+                const salt = await bcrypt.genSalt(10);
+                user.password = await bcrypt.hash(password, salt);
+
+                //Save to the db and return
+                await user.save();
+
+                //Save to the db and return
+                returnToken(user, res);
+            } catch (error) {
+                res.status(500).send('Server error : ' + error);
+            }
+        }
+    }
+);
+
+/**
+ * @route POST api/login
+ * @desc Login user
+ */
+
+app.post(
+    '/api/login',
+    [
+        expressValidator.check('email', 'Please enter a valid email').isEmail(),
+        expressValidator.check('password', 'A password is required').exists()
+    ],
+    async (req, res) => {
+        const errors = expressValidator.validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        } else {
+            const { email, password } = req.body;
+            try {
+                //Check if user exists
+                let user = await User.findOne({ email: email });
+                if (!user) {
+                    return res
+                        .status(400)
+                        .json({ errors: [{ msg: 'Invalid email' }] });
+                }
+
+                //Check password
+                const match = await bcrypt.compare(password, user.password);
+                if (!match) {
+                    return res
+                        .status(400)
+                        .json({ errors: [{ msg: 'Invalid password' }] });
+                }
+
+                returnToken(user, res);
+            } catch (error) {
+                res.status(500).send('Server error : ' + error);
+            }
+        }
+    }
+);
+
+/**
+ * @route GET api/auth
+ * @desc Authenticate user
+ */
+app.get('/api/auth', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).send('Unknown server error');
+    }
+});
 
 app.listen(PORT, () => {
     // listening on port
