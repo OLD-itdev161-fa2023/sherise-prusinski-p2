@@ -59,7 +59,7 @@ to run both simulatneously : npm run dev
 ![Alt text](demo/Home.png?raw=true "Home page") <br>
 
 1. <b> Register as a new user</b>By clicking on the Register between Home and Login links at the right top corner of the screen <br>
-![Alt text](demo/Register.png?raw=true "Logging in as a user") <br>
+![Alt text](demo/Register.png?raw=true "Register as a new user") <br>
 
 2. <b> Logging in as a user</b>By clicking on the Login link next to Home and Register links at the right top corner of the screen <br>
 ![Alt text](demo/Login.png?raw=true "Logging in as a user") <br>
